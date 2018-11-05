@@ -1,0 +1,6 @@
+form .input {
+    max-width: 350px;
+}
+h1.title, #result {
+    margin-bottom: 50px!important;
+}

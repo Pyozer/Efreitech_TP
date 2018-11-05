@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Sign Up</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+        <script src="/assets/js/ajax_request.js"></script>
+        <link rel="stylesheet" href="/assets/css/style.css">
+    </head>
+    <body>
+        <section class="hero is-fullheight is-dark">
+            <div class="hero-body columns">
+                <div class="column has-text-centered is-4 is-offset-4">
+                    <h1 class="title is-2">Sign Up</h1>
+
+                    <div id="result"></div>
+
+                    <form id="signUpFrom" onsubmit="event.preventDefault(); ajaxFromRequest('/signUp', 'signUpFrom', 'result');">
+                        <div class="field">
+                            <div class="control has-text-centered">
+                                <input class="input is-rounded" type="text" name="username" placeholder="Username" />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control has-text-centered">
+                                <input class="input is-rounded" type="password" name="password" placeholder="Password" />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control has-text-centered">
+                                <input class="input is-rounded" type="password" name="password_confirm" placeholder="Confirm Password" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="control has-text-centered">
+                            <button class="button is-primary is-rounded">Submit</button>
+                        </div>
+                    </form>
+                    <br />
+                    <span>You already have an account ? </span>
+                    <a href="/signIn" type="button"><u>Sign In</u></a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
