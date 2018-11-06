@@ -9,10 +9,10 @@ const PORT = process.argv[2]
 const REDDIT_JSON = 'https://www.reddit.com/r/perfectloops.json'
 const MIN_TIME = 60000 // 1 minute
 
-// Init messages at server start (avoid to read file at every request)
 let savedJSON = []
 let lastDataUpdate = 0
 
+// Load html elements to avoid read them at every request
 const htmlPage = fs.readFileSync('./top10Gif.html').toString();
 const htmlGif = fs.readFileSync('./gif.html').toString();
 
