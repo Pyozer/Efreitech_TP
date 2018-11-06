@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,17 +63,16 @@
         });
     </script>
 </head>
-
 <body>
+    <h1>Envoyer un message :</h1>
     <form action="/messages" method="post" onsubmit="event.preventDefault(); sendNewMessage()">
         <label for="message"></label>
         <input type="text" name="message" id="message" required autofocus>
         <input type="submit" value="Send">
     </form>
     <br />
-    <h1>Messages :</h1>
 
+    <h1>Messages :</h1>
     <div id="messages"></div>
 </body>
-
 </html>
