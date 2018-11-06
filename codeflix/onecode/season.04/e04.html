@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Search Photo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        // Send a new message
+        function search() {
+            const inputSearch = document.getElementById('tag')
+            const search = inputSearch.value
+            inputSearch.value = ''
+
+            if (!search || search.trim().length == 0) {
+                alert('You must fill the input text to search by tag !')
+                return;
+            }
+
+            let divPosts = document.getElementById('posts')
+            divPosts.innerHTML = ''
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', encodeURI('/search?tag=' + search));
+            xhr.onload = function () {
+                updateHtmlFromResponse(xhr)
+            };
+            xhr.send();
+        }
+
+        // Update html with new messages
+        function updateHtmlFromResponse(xhr) {
+            if (xhr.status === 200 && xhr.responseText.length > 0) {
+                let posts = JSON.parse(xhr.responseText)
+                let divPosts = document.getElementById('posts')
+                divPosts.innerHTML = ''
+
+                let htmlPosts = []
+                for (let post of posts) {
+                    htmlPosts.push(`
+                        <img src="${post.image}">
+                    `)
+                }
+                divPosts.innerHTML = htmlPosts.join('')
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Search by Tag</h1>
+    <form action="/photo" method="get" onsubmit="event.preventDefault(); search()">
+        <input type="text" name="tag" id="tag">
+        <input type="submit" value="Search">
+    </form>
+
+    <h2>Results :</h2>
+    <div id="posts"></div>
+</body>
+</html>

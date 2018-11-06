@@ -1,0 +1,12 @@
+{
+  "name": "season.04",
+  "version": "1.0.0",
+  "description": "Season 04",
+  "dependencies": {
+    "sqlite3": "^4.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "author": "Jean-Charles Moussé",
+  "license": "MIT"
+}
