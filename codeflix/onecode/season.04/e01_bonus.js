@@ -9,7 +9,7 @@ const PORT = process.argv[2]
 
 let usersData = {}
 
-const htmlPage = fs.readFileSync('./e01.html').toString()
+const htmlPage = fs.readFileSync('./e01_bonus.html').toString()
 
 http.createServer(function (req, res) {
     // Get user ip to store number and trys individually
