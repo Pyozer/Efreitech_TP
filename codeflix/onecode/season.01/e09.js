@@ -1,7 +1,7 @@
-const fs = require('fs')
+const { chmod } = require('fs')
 
-module.exports = function(filepath, chmod, callback) {
-    fs.chmod(filepath, chmod,  function(err) {
+module.exports = (filepath, mode, callback) => {
+    chmod(filepath, parseInt(mode, 8), err => {
         if (err) throw err
         callback()
     })

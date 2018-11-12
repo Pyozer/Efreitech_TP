@@ -1,8 +1,8 @@
-const fs = require('fs')
+const { access, constants } = require('fs')
 
-module.exports = function (path, callback) {
+module.exports = (path, callback) => {
     // Check if the file exists in the current directory, and if it is writable.
-    fs.access(path, fs.constants.R_OK | fs.constants.W_OK, (err) => {
+    access(path, constants.R_OK | constants.W_OK, err => {
         if (err && err.code === 'ENOENT')
             throw err // File not exists
         else if (err && err.code === 'EPERM')

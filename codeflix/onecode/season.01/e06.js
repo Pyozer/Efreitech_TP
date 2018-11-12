@@ -1,7 +1,8 @@
-const fs = require('fs')
+const { unlink } = require('fs')
 
-module.exports = function (filename) {
-    fs.unlink(filename, (err) => {
+module.exports = (filename, callback) => {
+    unlink(filename, err => {
         if (err) throw err
+        callback()
     })
 }

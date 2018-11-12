@@ -1,10 +1,10 @@
-const fs = require('fs')
+const { lstat } = require('fs')
 
-module.exports = function (path, callback) {
-    fs.lstat(path, (err, stats) => {
+module.exports = (path, callback) => {
+    lstat(path, (err, stats) => {
         if (err) throw err
 
-        var type;
+        let type;
         if (stats.isFile()) type = "file"
         else if (stats.isDirectory()) type = "directory"
         else if (stats.isSymbolicLink()) type = "symbolic link"

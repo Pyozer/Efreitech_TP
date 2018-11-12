@@ -1,5 +1,3 @@
-const fs = require('fs')
+const { readFileSync } = require('fs')
 
-module.exports = function (filepath) {
-    return fs.readFileSync(filepath, 'utf8')
-}
+module.exports = filepath => readFileSync(filepath, 'utf8')

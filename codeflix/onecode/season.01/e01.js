@@ -1,3 +1,1 @@
-module.exports = function () {
-    return __dirname
-}
+module.exports = () => __dirname

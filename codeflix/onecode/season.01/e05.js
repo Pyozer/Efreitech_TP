@@ -1,7 +1,8 @@
-const fs = require('fs')
+const { writeFile } = require('fs')
 
-module.exports = function (filename, content, callback) {
-    fs.writeFile(filename, content, (err) => {
+module.exports = (filename, content, callback) => {
+    writeFile(filename, content, (err) => {
         if (err) throw err
+        callback()
     })
 }
