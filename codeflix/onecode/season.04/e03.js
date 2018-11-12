@@ -17,18 +17,24 @@ const htmlPage = fs.readFileSync('./top10Gif.html').toString();
 const htmlGif = fs.readFileSync('./gif.html').toString();
 
 http.createServer(function (req, res) {
-    const actualTime = new Date().getTime()
+    
+    throttle(sendHTMLPageWithGifs, MIN_TIME)
 
-    if (actualTime - lastDataUpdate > MIN_TIME) {
-        lastDataUpdate = actualTime
-        updateRedditData(() => { sendHTMLPageWithGifs(res) })
-    } else {
-        sendHTMLPageWithGifs(res)
-    }
 }).listen(PORT, () => {
     updateRedditData(() => {}) // Init data
     lastDataUpdate = new Date().getTime()
 })
+
+function throttle(func, wait = 0) {
+    const now = new Date.now();
+
+    if (now - lastDataUpdate > wait) {
+        lastDataUpdate = now
+        return func
+    } else {
+        return (cb) => cb(savedJSON)
+    }
+}
 
 function updateRedditData(callback) {
     https.get(REDDIT_JSON, (resp) => {

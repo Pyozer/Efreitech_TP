@@ -1,8 +1,6 @@
-const EventEmitter = require('events');
+const { EventEmitter } = require('events');
 
-class MyEmitter extends EventEmitter { }
-
-const myEmitter = new MyEmitter();
+const myEmitter = new EventEmitter();
 
 function empty() {
     myEmitter.emit('hi');

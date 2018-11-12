@@ -11,14 +11,13 @@ function getFileInfo(file) {
 
 function duplicate(filename, callback) {
     const fInfo = getFileInfo(filename)
-
-    const readable = fs.createReadStream(filename);
+    
     const writable = fs.createWriteStream(`./${fInfo.filename}.copy${fInfo.fileExt}`);
 
     writable.on('finish', () => {
         callback(fInfo.file)
     });
-    readable.pipe(writable);
+    fs.createReadStream(filename).pipe(writable);
 }
 
 function transform(filename, re, fn, in_stdout = true) {
@@ -29,7 +28,7 @@ function transform(filename, re, fn, in_stdout = true) {
 
     const streamTransform = new stream.Transform();
 
-    streamTransform._transform = function (data, enc, cb) {
+    streamTransform._transform = (data, enc, cb) => {
         var transformed = data.toString().replace(re, fn);
         cb(null, transformed);
         console.log(`File: ${fInfo.file} successfully transformed!`)
@@ -49,12 +48,11 @@ function csv2json(filename) {
     const writable = fs.createWriteStream(`./${fInfo.filename}.json`);
     const streamTransform = new stream.Transform();
 
-    streamTransform._transform = function (data, enc, cb) {
+    streamTransform._transform = (data, enc, cb) => {
         const json = []
         let header = []
-        let lineNumber = 0
         // For each line of csv file
-        data.toString().split('\n').forEach(line => {
+        data.toString().split('\n').forEach((line, lineNumber) => {
             const values = line.split(';') // Get values
 
             if (lineNumber == 0) { // If first line, get header values
@@ -62,23 +60,22 @@ function csv2json(filename) {
             } else {
                 let obj = {}
                 // Get value for each header
-                for (let i = 0; i < header.length; i++) {
+                for (const [i, headerVal] of header.entries()) {
                     const value = values[i]
 
                     if (value.match(/[0-9]{8}/)) { // If it's a date (ex: 20181030)
                         const year = value.substring(0, 4)
                         const month = value.substring(4, 6)
                         const day = value.substring(6, 8)
-                        obj[header[i]] = `${year}-${month}-${day}`
+                        obj[headerVal] = `${year}-${month}-${day}`
                     } else if (value.indexOf(',') !== -1) { // If multiple value (ex: composer,pianist)
-                        obj[header[i]] = value.toLowerCase().split(',').map(item => item.trim())
+                        obj[headerVal] = value.toLowerCase().split(',').map(item => item.trim())
                     } else {
-                        obj[header[i]] = value
+                        obj[headerVal] = value
                     }
                 }
                 json.push(obj) // Add to json
             }
-            lineNumber++
         })
         cb(null, JSON.stringify(json, null, 2));
     };
@@ -91,7 +88,7 @@ function csv2json(filename) {
 }
 
 function WTFIsThisPipe(directory, type) {
-    fs.readdir(directory, function (err, files) {
+    fs.readdir(directory, (err, files) => {
         if (err) throw err
 
         filesList = files.filter(e => path.extname(e).toLowerCase() === `.${type}`);
@@ -112,7 +109,7 @@ function WTFIsThisPipe(directory, type) {
 }
 
 function catPipeWc(directory, type, cb) {
-    fs.readdir(directory, function (err, files) {
+    fs.readdir(directory, (err, files) => {
         if (err) throw err
 
         // Get only file with specific extension

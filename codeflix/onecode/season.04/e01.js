@@ -22,7 +22,7 @@ http.createServer(function (req, res) {
     const userData = usersData[userIp]
 
     if (userData.number == -1)
-        userData.number = Math.floor(Math.random() * Math.floor(1000));
+        userData.number = Math.floor(Math.random() * 1000);
 
     // Number that user is trying
     const queryN = url.parse(req.url, true).query.n

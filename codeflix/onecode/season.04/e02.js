@@ -6,15 +6,15 @@ if (!process.argv[2])
 
 const PORT = process.argv[2]
 
-// Init messages at server start (avoid to read file at every request)
-let data = {}
-try {
-    data = JSON.parse(fs.readFileSync('./messages.json'))
-} catch (e) {
-    throw e
-}
+const MESSAGES_PATH = "./messages.json"
 
-http.createServer(function (req, res) {
+if (!fs.existsSync(MESSAGES_PATH))
+    fs.writeFileSync(MESSAGES_PATH, JSON.stringify({messages: []}, null, 2))
+
+// Init messages at server start (avoid to read file at every request)
+let data = JSON.parse(fs.readFileSync(MESSAGES_PATH))
+
+http.createServer((req, res) => {
     const reqUrl = req.url.replace(/\/\/+/g, "/");
     if (reqUrl == '/messages' && req.method == 'GET') {
         sendResponse(res, 200, 'application/json', JSON.stringify(data))
@@ -27,7 +27,7 @@ http.createServer(function (req, res) {
                     text: body.trim(),
                     date: new Date().toISOString()
                 })
-                const dataStr = JSON.stringify(data)
+                const dataStr = JSON.stringify(data, null, 2)
                 fs.writeFile('./messages.json', dataStr, (err, data) => {
                     if (err) throw err
                 })
