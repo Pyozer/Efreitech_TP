@@ -1,15 +1,30 @@
-const router = require('express').Router()
+const { Router } = require('express')
+const router = Router({ mergeParams: true })
 const { db } = require('../data/database')
-const { sendUserIdNotFound, sendUserNotExists, getUser } = require('./users')
 
 const Link = require('../models/link')
+
+function sendUserNotExists(res) {
+    res.status(404).json({ "status": "error", "error": "Not found", "message": "User not exists !" })
+}
+
+function sendUserIdNotFound(res) {
+    res.status(400).json({ "status": "error", "error": "Bad request", "message": "Error when try to get user_id from url" })
+}
 
 function sendLinkNotExists(res) {
     res.status(404).json({ "status": "error", "error": "Not found", "message": "Link is not exists !" })
 }
 
 function sendLinkIdNotFound(res) {
-    res.status(400).json({ "status": "error", "error": "Bad request", "message": "You must pass a valid linkId (int) in params !" })
+    res.status(400).json({ "status": "error", "error": "Bad request", "message": "Error when try to get link_id from url" })
+}
+
+function getUser(user_id, values, callback) {
+    db.get(`SELECT ${values.join(',')} FROM user WHERE id = ?`, [user_id], (err, row) => {
+        if (err) throw err
+        callback(row)
+    })
 }
 
 // GET '/users/:userId/links'
@@ -27,14 +42,14 @@ router.get('/', (req, res) => {
             return
         }
         db.all(`
-      SELECT link.id as id_link, link.tags, link.url FROM link
-      INNER JOIN user ON user.id = link.user_id
-      WHERE link.user_id = ?
-    `, [userId], (err, links) => {
-                if (err) throw err
+            SELECT link.id as id_link, link.tags, link.url FROM link
+            INNER JOIN user ON user.id = link.user_id
+            WHERE link.user_id = ?
+        `, [userId], (err, links) => {
+            if (err) throw err
 
-                res.json({ "status": "success", "links": links || [] })
-            })
+            res.json({ "status": "success", "links": links || [] })
+        })
     })
 })
 
@@ -55,8 +70,8 @@ router.post('/', (req, res) => {
         const link = new Link(null, req.body.tags, req.body.url, userId)
 
         if (!link.isValid()) {
-            res.status(400).json({ "status": "error", "error": "Bad request", "message": "You must pass 'tags' and 'url' in body" })
-            return;
+            res.status(400).json({ "status": "error", "error": "Bad request", "message": "You must enter the tags and url" })
+            return
         }
 
         db.run(
@@ -127,7 +142,7 @@ router.patch('/:linkId', (req, res) => {
 
     // Check body for new data
     if (!link.tags && !link.url) {
-        res.status(400).json({ "status": "error", "error": "Bad request", "message": "You need to pass at least 'tags' or 'url' in body" })
+        res.status(400).json({ "status": "error", "error": "Bad request", "message": "You need to enter at least the tags or url" })
         return
     }
 
@@ -174,7 +189,6 @@ router.delete('/:linkId', (req, res) => {
             sendUserNotExists(res)
             return
         }
-
         getLink(userId, linkId, ['link'], link => {
             if (!link) {
                 sendLinkNotExists(res)
@@ -184,7 +198,7 @@ router.delete('/:linkId', (req, res) => {
                 if (err) throw err
 
                 res.json({ "status": "success", "message": "Link has been successfully deleted !" })
-            });
+            })
         })
     })
 })

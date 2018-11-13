@@ -4,17 +4,17 @@ const usersRouter = Router()
 const { db } = require('../data/database')
 const linksRouter = require('./links')
 
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 const User = require('../models/user')
 
 function sendUserNotExists(res) {
-  res.status(404).json({ "status": "error", "error": "Not found", "message": "User is not exists !" })
+    res.status(404).json({ "status": "error", "error": "Not found", "message": "User not exists !" })
 }
 
 function sendUserIdNotFound(res) {
-  res.status(400).json({ "status": "error", "error": "Bad request", "message": "You must pass a valid userId (int) in params !" })
+    res.status(400).json({ "status": "error", "error": "Bad request", "message": "Error when try to get user_id from url" })
 }
 
 // GET '/users'
@@ -30,19 +30,20 @@ usersRouter.post('/', (req, res) => {
   const user = new User(null, req.body.nickname, req.body.password, req.body.email)
 
   if (!user.isValid()) {
-    res.status(400).json({ "status": "error", "error": "Bad request", "message": "You need to pass 'nickname', 'password' and 'email' in post body" })
-    return;
+    res.status(400).json({ "status": "error", "error": "Bad request", "message": "You must enter a nickname, password and your email !" })
+    return
   }
 
   bcrypt.hash(user.password, saltRounds, (err, hash) => {
-    user.password = hash
+    if (err) throw err
 
+    user.password = hash
     db.run(
       "INSERT INTO user(nickname, password, email) VALUES ($nickname, $password, $email)",
       user.toJSONDB(),
       err => {
         if (err) throw err
-        res.json({ "status": "success", "message": "User has been successfully added !" })
+        res.json({ "status": "success", "message": "User successfully added !" })
       }
     )
   })
@@ -54,7 +55,7 @@ usersRouter.get('/:userId', (req, res) => {
 
   if (!userId) {
     sendUserIdNotFound(res)
-    return;
+    return
   }
 
   getUser(userId, ['id', 'nickname', 'email'], user => {
@@ -86,13 +87,13 @@ usersRouter.patch('/:userId', (req, res) => {
 
   // Check body for new data
   if (!user.nickname && !user.email && !user.password) {
-    res.status(400).json({ "status": "error", "error": "Bad request", "message": "You need to pass at least 'nickname', 'email' or 'new_password' in body" })
-    return;
+    res.status(400).json({ "status": "error", "error": "Bad request", "message": "You need to enter at least a new nickname, email or password" })
+    return
   }
   // Check if actual password is specify
   if (user.password && !req.body.actual_password) {
-    res.status(400).json({ "status": "error", "error": "Bad request", "message": "You must pass 'actual_password' in body" })
-    return;
+    res.status(400).json({ "status": "error", "error": "Bad request", "message": "You must enter your actual password" })
+    return
   }
 
   // Check if actual password is correct
@@ -105,13 +106,11 @@ usersRouter.patch('/:userId', (req, res) => {
       const isPasswordCorrect = bcrypt.compareSync(req.body.actual_password, userRow.password)
       if (!isPasswordCorrect) {
         res.status(401).json({ "status": "error", "error": "Unauthorized", "message": "The actual password is not correct !" })
-        return;
-      } else {
-        // Actual password correct, so we can update it
-        user.password = bcrypt.hashSync(user.password, saltRounds)
+        return
       }
+      // Actual password correct, so we can update it
+      user.password = bcrypt.hashSync(user.password, saltRounds)
     }
-
     const reqParts = user.toJSON().map(e => `${e.key} = ${e.value ? '$' : ''}${e.key}`)
     const reqUpdate = `UPDATE user SET ${reqParts.join(', ')} WHERE id = $id`
 
@@ -120,7 +119,7 @@ usersRouter.patch('/:userId', (req, res) => {
       user.toJSONDB(),
       err => {
         if (err) throw err
-        res.json({ "status": "success", "message": "User data has been successfully updated !" })
+        res.json({ "status": "success", "message": "Your data has been successfully updated !" })
       }
     )
   })
@@ -141,16 +140,12 @@ usersRouter.delete('/:userId', (req, res) => {
     }
     db.run("DELETE FROM user WHERE id = ?", [userId], err => {
       if (err) throw err
-      res.json({ "status": "success", "message": "User has been successfully deleted !" })
-    });
+      res.json({ "status": "success", "message": "User successfully deleted !" })
+    })
   })
 })
 
-usersRouter.use('/links', linksRouter)
+// Add nested routes (/users/:userId/links and /users/:userId/links/:linkId)
+usersRouter.use('/:userId/links', linksRouter)
 
-module.exports = {
-  usersRouter,
-  sendUserIdNotFound,
-  sendUserNotExists,
-  getUser
-}
+module.exports = usersRouter
