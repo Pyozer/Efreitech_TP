@@ -170,10 +170,10 @@ router.get('/:userId/links', (req, res) => {
       SELECT link.id as id_link, link.tags, link.url FROM link
       INNER JOIN user ON user.id = link.user_id
       WHERE link.user_id = ?
-    `, [userId], (err, rows) => {
+    `, [userId], (err, links) => {
         if (err) throw err
 
-        res.json({ "status": "success", "links": rows || [] })
+        res.json({ "status": "success", "links": links || [] })
       })
   })
 })
@@ -211,13 +211,43 @@ router.post('/:userId/links', (req, res) => {
   })
 })
 
-function getLink(user_id, link_id, callback) {
-  db.get("SELECT * FROM link WHERE id = ? AND user_id = ?", [link_id, user_id], (err, row) => {
+function getLink(user_id, link_id, values, callback) {
+  db.get(`SELECT ${values.join(',')} FROM link WHERE id = ? AND user_id = ?`, [link_id, user_id], (err, row) => {
     if (err) throw err
-
     callback(row)
   })
 }
+
+// GET '/users/:userId/links'
+router.get('/:userId/links/:linkId', (req, res) => {
+  const userId = parseInt(req.params.userId)
+  if (!userId) {
+    sendUserIdNotFound(res)
+    return
+  }
+
+  const linkId = parseInt(req.params.linkId)
+  if (!linkId) {
+    sendLinkIdNotFound(res)
+    return
+  }
+
+  // Check if user pass exists
+  getUser(userId, ['id'], userRow => {
+    if (!userRow) {
+      sendUserNotExists(res)
+      return
+    }
+    // Check if link pass exists
+    getLink(userId, linkId, ['id', 'tags', 'url'], linkRow => {
+      if (!linkRow) {
+        sendLinkNotExists(res)
+        return
+      }
+      res.json({ "status": "success", "link": linkRow })
+    })
+  })
+})
 
 // PATCH '/users/:userId/links'
 router.patch('/:userId/links/:linkId', (req, res) => {
@@ -248,7 +278,7 @@ router.patch('/:userId/links/:linkId', (req, res) => {
       return
     }
     // Check if link pass exists
-    getLink(userId, linkId, linkRow => {
+    getLink(userId, linkId, ['id'], linkRow => {
       if (!linkRow) {
         sendLinkNotExists(res)
         return
@@ -285,7 +315,7 @@ router.delete('/:userId/links/:linkId', (req, res) => {
       return
     }
 
-    getLink(userId, linkId, link => {
+    getLink(userId, linkId, ['link'], link => {
       if (!link) {
         sendLinkNotExists(res)
         return
