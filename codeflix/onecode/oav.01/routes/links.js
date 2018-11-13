@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
         }
         const link = new Link(null, req.body.tags, req.body.url, userId)
 
-        if (!link.isValidForInsert()) {
+        if (!link.isValid()) {
             res.status(400).json({ "status": "error", "error": "Bad request", "message": "You must pass 'tags' and 'url' in body" })
             return;
         }

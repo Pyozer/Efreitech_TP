@@ -1,6 +1,9 @@
-const usersRouter = require('express').Router()
+const { Router } = require('express')
+const usersRouter = Router()
+
 const { db } = require('../data/database')
 const linksRouter = require('./links')
+
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -26,7 +29,7 @@ usersRouter.get('/', (req, res) => {
 usersRouter.post('/', (req, res) => {
   const user = new User(null, req.body.nickname, req.body.password, req.body.email)
 
-  if (!user.isValidForInsert()) {
+  if (!user.isValid()) {
     res.status(400).json({ "status": "error", "error": "Bad request", "message": "You need to pass 'nickname', 'password' and 'email' in post body" })
     return;
   }

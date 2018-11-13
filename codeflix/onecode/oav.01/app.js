@@ -2,7 +2,7 @@ const createError = require('http-errors')
 const express = require('express')
 const path = require('path')
 const logger = require('morgan')
-const { db, dbInitialize } = require('./data/database')
+const { dbInitialize } = require('./data/database')
 
 // Init database table
 dbInitialize()
@@ -10,6 +10,7 @@ dbInitialize()
 // Routes index
 const indexRouter = require('./routes/index')
 const { usersRouter } = require('./routes/users')
+const authRouter = require('./routes/auth')
 
 const app = express()
 const PORT = 3000
@@ -26,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Global routes
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
+app.use('/login', authRouter.loginRouter)
+app.use('/register', authRouter.registerRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
