@@ -14,8 +14,8 @@ module.exports = class User {
         return [
             { key: "id", value: this.id },
             { key: "nickname", value: this.nickname },
-            { key: "email", value: this.email },
             { key: "password", value: this.password },
+            { key: "email", value: this.email },
         ].filter(item => item.value)
     }
 
