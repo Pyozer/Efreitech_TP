@@ -97,7 +97,7 @@ usersRouter.patch('/:userId', (req, res) => {
   }
 
   // Check if actual password is correct
-  getUser(userId, ['*'], userRow => {
+  getUser(userId, ['password'], userRow => {
     if (!userRow) {
       sendUserNotExists(res)
       return
