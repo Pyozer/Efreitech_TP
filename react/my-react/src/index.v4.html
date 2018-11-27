@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>My React</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../libs/myReact.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="root"></div>
+
+  <script type="text/javascript">
+    class Counter extends ReactComponent {
+      constructor(props) {
+        super(props)
+        this.state = {
+          value: 0,
+          date: new Date()
+        }
+
+        setInterval(() => this._tick(), 1000)
+      }
+
+      _plusOne() {
+        let newValue = this.state.value + 1
+        this.setState({
+          value: newValue
+        })
+      }
+
+      _minusOne() {
+        let newValue = this.state.value - 1
+        this.setState({
+          value: newValue
+        })
+      }
+
+      _tick() {
+        this.setState({
+          date: new Date()
+        });
+      }
+
+      render() {
+        return React.createElement('section', { className: "section" },
+          React.createElement('div', { className: "container" },
+            React.createElement('h1', { className: "title" }, "Counter component"),
+            React.createElement('hr'),
+            React.createElement('div', { className: "content" },
+              React.createElement('h2', null, `Current date ${this.state.date.toLocaleString()}`),
+              React.createElement('p', null, `The current value is`),
+              React.createElement('strong', null,
+                this.state.value,
+                React.createElement('br'),
+                React.createElement('br'),
+                React.createElement('a', { className: "button is-success", onClick: () => this._plusOne() }, "Plus"),
+                React.createElement('span', null, "  "),
+                React.createElement('a', { className: "button is-danger", onClick: () => this._minusOne() }, "Minus")
+              )
+            )
+          )
+        )
+      }
+    }
+
+    const parent = React.createElement('div', null, Counter)
+
+    ReactDOM.render(parent, document.getElementById('root'))
+  </script>
+</body>
+
+</html>
