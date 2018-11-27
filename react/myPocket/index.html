@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MyPocket</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./src/app.js" type="text/babel"></script>
+    <script src="./src/home.js" type="text/babel"></script>
+    <script src="./src/page_not_found.js" type="text/babel"></script>
+    <script src="./src/register.js" type="text/babel"></script>
+    <script src="./src/login.js" type="text/babel"></script>
+    <script src="./src/navbar.js" type="text/babel"></script>
+    <script src="./src/navitem.js" type="text/babel"></script>
+    <script src="./src/footer.js" type="text/babel"></script>
+    <script src="./src/sidebar.js" type="text/babel"></script>
+    <script src="./src/sidebaritem.js" type="text/babel"></script>
+    <script src="./src/userlist.js" type="text/babel"></script>
+    <script src="./src/usercard.js" type="text/babel"></script>
+    <script src="./src/linklist.js" type="text/babel"></script>
+    <script src="./src/link.js" type="text/babel"></script>
+    <script src="./src/tag.js" type="text/babel"></script>
+    <script src="./src/center_form_page.js" type="text/babel"></script>
+    <script src="./src/center_content.js" type="text/babel"></script>
+    <script src="./src/rounded_input.js" type="text/babel"></script>
+    <script src="./src/outline_button.js" type="text/babel"></script>
+    <script src="./src/link_prevented.js" type="text/babel"></script>
+
+    <script type="text/babel">
+        const BASE_API = "http://localhost:3000"
+
+        class Events {
+            static events = {}
+
+            static add(eventName, callback) {
+                Events.events[eventName] = callback
+            }
+
+            static call(eventName, value) {
+                if (Events.events[eventName])
+                    Events.events[eventName](value)
+            }
+
+            static remove(eventName) {
+                Events.events[eventName] = null
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
