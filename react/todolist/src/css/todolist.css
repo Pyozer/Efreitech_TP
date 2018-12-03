@@ -1,0 +1,15 @@
+.todo-list {
+    width: 300px;
+}
+
+.todo-list div {
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #C8C8C8;
+    border-radius: 8px;
+}
+
+.todo-list div:hover {
+    background-color: #EEE;
+    box-shadow: 1px 1px 0 0 #C8C8C8;
+}
