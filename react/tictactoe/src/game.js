@@ -1,5 +1,6 @@
 import React from 'react'
 import Board from './board'
+import './css/game.css'
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -43,33 +44,35 @@ export default class Game extends React.Component {
 
         const moves = history.map((step, move) => {
             return (
-                <li key={move}>
-                    <button onClick={() => this.jumpTo(move)}>
-                        {move ?
-                            'Go to move #' + move :
-                            'Go to game start'}
-                    </button>
-                </li>
+                <button className="btn btn-primary" onClick={() => this.jumpTo(move)} key={move}>
+                    {move ?
+                        `Go to move #${move}` :
+                        'Go to game start'}
+                </button>
             )
         })
 
         let status
         if (winner)
-            status = 'Winner: ' + winner
+            status = `Winner: ${winner}`
         else
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
 
         return (
-            <div className="game">
-                <div className="game-board">
-                    <Board
-                        squares={current.squares}
-                        onClick={(i) => this.handleClick(i)}
-                    />
-                </div>
-                <div className="game-info">
-                    <div>{status}</div>
-                    <ol>{moves}</ol>
+            <div className="centered">
+                <h1 className="game-title">TicTactoe</h1>
+                <h2 className="game-status">{status}</h2>
+                <div className="game">
+                    <div className="game-board">
+                        <Board
+                            squares={current.squares}
+                            onClick={(i) => this.handleClick(i)}
+                        />
+                    </div>
+                    <h3>History</h3>
+                    <div className="game-info">
+                        <div className="game-moves">{moves}</div>
+                    </div>
                 </div>
             </div>
         )
@@ -87,8 +90,8 @@ function calculateWinner(squares) {
         [0, 4, 8],
         [2, 4, 6],
     ]
-    for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i]
+    for (const line of lines) {
+        const [a, b, c] = line
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
             return squares[a]
         }

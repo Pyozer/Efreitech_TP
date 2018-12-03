@@ -1,12 +1,12 @@
 import React from 'react'
 import Square from './square'
+import './css/board.css'
 
 export default class Board extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             squares: Array(9).fill(null),
-            xIsNext: true
         }
     }
 
@@ -19,7 +19,7 @@ export default class Board extends React.Component {
 
     render() {
         return (
-            <div>
+            <>
                 <div className="board-row">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
@@ -35,7 +35,7 @@ export default class Board extends React.Component {
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
                 </div>
-            </div>
+            </>
         )
     }
 }

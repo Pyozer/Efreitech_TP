@@ -1,0 +1,28 @@
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.game-status {
+    margin-top: 64px;
+} 
+
+.game-board, .game-info {
+    margin: 16px;
+}
+
+.game-info {
+    max-width: 500px;
+}
+
+.game-info h2 {
+    margin-top: 0;
+}
+
+.game-moves {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
