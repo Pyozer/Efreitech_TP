@@ -52,18 +52,20 @@ export default class Game extends React.Component {
             )
         })
 
-        let status
-        if (winner)
-            status = `Winner: ${winner}`
-        else
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
-
         return (
             <div className="centered">
-                <h1 className="game-title">TicTactoe</h1>
-                <h2 className="game-status">{status}</h2>
+                <h1 className="game-title">TicTacToe</h1>
+                <h2 className="game-status">{winner ? (
+                    <>
+                        <span className="winner">Winner: {winner}</span>
+                        <br />
+                        <span className="loser">Loser: {winner === "X" ? "O" : "X"}</span>
+                    </>
+                ) : (
+                        <span>Next player: {this.state.xIsNext ? 'X' : 'O'}</span>
+                    )}</h2>
                 <div className="game">
-                    <div className="game-board">
+                    <div className={"game-board" + (winner ? " winner" : '')}>
                         <Board
                             squares={current.squares}
                             onClick={(i) => this.handleClick(i)}

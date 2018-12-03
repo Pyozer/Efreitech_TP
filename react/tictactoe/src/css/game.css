@@ -7,7 +7,14 @@
 
 .game-status {
     margin-top: 64px;
-} 
+}
+
+.game-status .winner {
+    color: green
+}
+.game-status .loser {
+    color: red
+}
 
 .game-board, .game-info {
     margin: 16px;
