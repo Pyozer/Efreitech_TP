@@ -28,6 +28,11 @@ html, body, #root {
   border: 1px solid #AAA;
 }
 
+.input:hover, .input:focus, .input:active {
+  outline: none;
+  border: 1px solid #666;
+}
+
 .input::placeholder {
   color: #AAA;
 }

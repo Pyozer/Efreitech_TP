@@ -52,7 +52,6 @@ class Todo extends React.Component {
             placeholder="Add new todo"
             onChange={this.handleChange}
             value={this.state.text}
-            style={{ marginTop: 16 }}
             required
           />
           <button type="submit" className="btn right-round">ADD</button>
