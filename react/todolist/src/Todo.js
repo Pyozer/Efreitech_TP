@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import TodoList from './TodoList';
-import './css/todoapp.css'
 
-class TodoApp extends React.Component {
+class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { items: [], text: '' };
@@ -32,10 +31,15 @@ class TodoApp extends React.Component {
     }))
   }
 
+  onDeleteAll = () => {
+    this.setState({
+      items: []
+    })
+  }
+
   render() {
     return (
-      <div className="centered">
-        <h1>TODO</h1>
+      <>
         <form onSubmit={this.handleSubmit} className="text-center">
           <label htmlFor="new-todo">
             Add new item to TodoList
@@ -44,20 +48,23 @@ class TodoApp extends React.Component {
           <input
             id="new-todo"
             type="text"
-            className="input"
+            className="input left-round"
             placeholder="Add new todo"
             onChange={this.handleChange}
             value={this.state.text}
             style={{ marginTop: 16 }}
             required
           />
-          <button type="submit" className="btn">ADD</button>
+          <button type="submit" className="btn right-round">ADD</button>
         </form>
         <br />
         <TodoList items={this.state.items} onItemClick={this.onItemClick} />
-      </div>
+        <div className="fixed-bottom-right">
+          <button className="btn btn-danger round" onClick={this.onDeleteAll}>DELETE ALL</button>
+        </div>
+      </>
     );
   }
 }
 
-export default TodoApp;
+export default Todo;

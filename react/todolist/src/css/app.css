@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis");
+
+html, body, #root {
+    height: 100%;
+    width: 100%;
+    font-family: 'Dosis', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.input {
+  margin-top: 16px;
+  background-color: #fff;
+  padding: 10px 16px;
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid #AAA;
+}
+
+.input::placeholder {
+  color: #AAA;
+}
+
+.btn {
+  background-color: #FFF;
+  padding: 10px 16px;
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+
+.btn:hover, .btn:focus, .btn:active {
+  border: 1px solid #007bffb7;
+  color: #007bffb7;
+  background-color: #FAFAFA;
+}
+
+.btn-danger {
+  background-color: #FFF;
+  border: 1px solid #FF0000;
+  color: #FF0000;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+  border: 1px solid #FF0000b7;
+  color: #FF0000b7;
+  Background-color: #FAFAFA;
+}
+
+.left-round {
+  border-radius: 50px 0 0 50px;
+}
+
+.right-round {
+  border-radius: 0 50px 50px 0;
+}
+
+.round {
+  border-radius: 50px;
+}
+
+.fixed-bottom-right {
+  display: relative;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
