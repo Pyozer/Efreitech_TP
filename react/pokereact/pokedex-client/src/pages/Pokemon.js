@@ -35,7 +35,6 @@ class Pokemon extends Component {
         return (
             <>
                 <BackIcon href="/" title="Back to home" className="fixed-top-left" />
-                <br />
                 {this.renderBody()}
             </>
         )
