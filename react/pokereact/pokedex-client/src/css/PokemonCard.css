@@ -1,0 +1,21 @@
+.card .card-content {
+    padding: 0 16px 16px 16px;
+}
+
+.card .card-content h6, .card .card-content h5 {
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.card .card-content h5 {
+    font-size: 1.35rem;
+}
+
+.card .card-content h6 {
+    font-size: 1.3rem;
+}
+
+.card .card-image {
+    padding: 12px;
+}

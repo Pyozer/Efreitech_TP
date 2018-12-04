@@ -76,9 +76,9 @@ html, body, #root {
   border-radius: 50px;
 }
 
-.fixed-bottom-right {
+.fixed-top-right {
   display: relative;
   position: absolute;
-  bottom: 16px;
+  top: 16px;
   right: 16px;
 }

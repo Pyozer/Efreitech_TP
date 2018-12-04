@@ -58,7 +58,7 @@ class Todo extends React.Component {
         </form>
         <br />
         <TodoList items={this.state.items} onItemClick={this.onItemClick} />
-        <div className="fixed-bottom-right">
+        <div className="fixed-top-right">
           <button className="btn btn-danger round" onClick={this.onDeleteAll}>DELETE ALL</button>
         </div>
       </>
