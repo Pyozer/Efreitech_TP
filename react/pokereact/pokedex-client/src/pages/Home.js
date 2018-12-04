@@ -35,7 +35,10 @@ class Home extends Component {
     getFilteredPokemons = (search) => {
         const searchValue = search.toLowerCase()
         return this.state.pokemons.filter(v => {
-            const searchValues = [v.nom, v.nomen, v.nomde, v.nomtm, v.espece, v.ndex, v.pokemon].map(v => v.toLowerCase())
+            const searchValues = [
+                v.nom, v.nomen, v.nomde, v.nomja, v.nomch, v.nomko, v.nomromanji, v.nomtm,
+                v.espece, v.ndex, v.pokemon
+            ].map(v => v ? v.toLowerCase() : '')
             return searchValues.join(' ').indexOf(searchValue) !== -1
         })
     }
