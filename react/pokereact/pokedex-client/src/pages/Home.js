@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../css/Home.css';
 import SearchBar from '../components/SearchBar'
 import PokemonList from '../components/PokemonList';
 

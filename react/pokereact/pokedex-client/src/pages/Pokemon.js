@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import PokemonInfo from '../components/PokemonInfos'
 import BackIcon from '../components/BackIcon'
-import '../css/Pokemon.css';
 
 class Pokemon extends Component {
     constructor(props) {
