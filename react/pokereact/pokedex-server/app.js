@@ -4,7 +4,6 @@ const logger = require('morgan');
 const fs = require('fs');
 
 const indexRouter = require('./routes/index');
-const pokemonRouter = require('./routes/pokemon');
 
 // Init pokemon data
 let pokedex = []
@@ -34,7 +33,6 @@ app.use((req, res,  next) => {
 })
 
 app.use('/', indexRouter);
-app.use('/pokemons', pokemonRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
