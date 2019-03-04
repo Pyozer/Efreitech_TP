@@ -17,7 +17,7 @@ router.get('/:pokemonId', (req, res) => {
 
   let pokemon = req.pokedex.find(value => parseInt(value.ndex) == pokemonId)
   if (!pokemon)
-    res.send({ 'startus': 'error', 'message': `There is no pokemon with ${pokemonId} as ID`, 'code': 404 });
+    res.send({ 'startus': 'error', 'message': `The pokemon #${pokemonId} is not in our database`, 'code': 404 });
   else
     res.send({ 'startus': 'success', 'data': pokemon, 'code': 200 });
 });

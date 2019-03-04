@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "PokeReact",
+  "name": "A simple pokedex built with React and NodeJS for the backend",
   "icons": [
     {
       "src": "favicon.ico",

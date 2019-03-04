@@ -4,14 +4,14 @@ import '../css/PokemonCard.css';
 import PokemonImage from './PokemonImage';
 
 const PokemonCard = ({ pokemon }) => (
-    <Link to={"/" + pokemon.ndex} title={pokemon.nom}>
-        <div className="card hoverable">
+    <Link to={`/${pokemon.ndex}`} title={pokemon.nom}>
+        <div className="Pokemon-Card card scaleEffect">
             <div className="card-image">
                 <PokemonImage ndex={pokemon.ndex} />
             </div>
             <div className="card-content">
-                <h6 className="blue-grey-text">#{pokemon.ndex}</h6>
-                <h5 className="flow-text blue-grey-text">{pokemon.nom}</h5>
+                <h6 className="truncate">#{pokemon.ndex}</h6>
+                <h5 className="truncate">{pokemon.nom}</h5>
             </div>
         </div>
     </Link>

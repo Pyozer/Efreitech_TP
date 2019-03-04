@@ -1,8 +1,7 @@
 import React from 'react';
 import PokemonCard from './PokemonCard';
-//import '../css/PokemonList.css';
 
-const PokemonList = ({ pokemons }) => (
+const PokemonList = ({pokemons}) => (
     <div className="row">
         {pokemons.map(pokemon => (
             <div className="col s6 m4 l3 xl2" key={pokemon.ndex}>

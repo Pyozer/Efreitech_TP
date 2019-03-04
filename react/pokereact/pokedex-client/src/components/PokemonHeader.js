@@ -1,13 +1,14 @@
 import React from 'react'
 import PokemonImage from './PokemonImage';
+import Center from './Center';
 
-const PokemonHeader = ({ndex, nom}) => (
-    <div className="flex align-items-center justify-content-center">
-        <h2>#{ndex} {nom}</h2>
+const PokemonHeader = ({ ndex, nom, className = "" }) => (
+    <Center className={className}>
+        <h2 className="m-0 mr-1">#{ndex} {nom}</h2>
         <div>
             <PokemonImage ndex={ndex} width="150" className="bounceEffect" />
         </div>
-    </div>
+    </Center>
 )
 
 export default PokemonHeader

@@ -1,83 +1,145 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800');
 
-html, body {
+html, body, #root {
     margin: 0;
     padding: 0;
     font-family: 'Dosis', sans-serif;
+    height: 100%;
+    min-height: 100%;
+}
+
+#root {
     color: #222;
+    background-color: white;
+}
+#root .is-dark {
+    background-color: #222;
+    color: #EAEAEA;
 }
 
-.flex {
-    display: flex;
+.pokeball-bg {
+    background: url('/background.png') bottom right no-repeat fixed;
 }
 
-.flex-column {
-    flex-direction: column;
+.is-dark.pokeball-bg {
+    background: url('/background_dark.png') bottom right no-repeat fixed;
 }
 
-.justify-content-center {
-    justify-content: center;
+strong { font-weight: 600!important; }
+
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-grow { flex-grow: 1; }
+.justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+.align-items-center { align-items: center; }
+
+.fixed-bottom-right {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+}
+.fixed-top-right {
+    position: fixed;
+    top: 32px;
+    right: 32px;
 }
 
-.align-items-center {
-    align-items: center;
+.w50 { width: 50%; }
+.h100 { height: 100%; }
+.mh100 { min-height: 100%; }
+
+.pt-3 { padding-top: 2.6em!important; }
+.pb-4 { padding-bottom: 3.6em!important; }
+.pl-1 { padding-left: 1.15em; }
+.pr-1 { padding-right: 1.15em; }
+.py-row {
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
-.flex-grow {
-    flex-grow: 1;
+.mt-2 { margin-top: 1.6em!important; }
+.mt-4 { margin-top: 3.6em!important; }
+.mr-1 { margin-right: 0.8em!important; }
+.mr-2 { margin-right: 2em!important; }
+.ml-2 { margin-left: 2em!important; }
+.mb-0 { margin-bottom: 0!important; }
+.m-0 { margin: 0 }
+
+.d-block { display: block!important; }
+.d-none { display: none!important; }
+
+.circled {
+    border-radius: 50px;
 }
 
-.mt-2 {
-    margin-top: 1.6em!important;
+.card { border-radius: 7px; }
+.card .card-content { color: #607d8b; }
+.is-dark .card .card-content { color: white; }
+.is-dark .card { background-color: #444; }
+
+.is-dark h1,
+.is-dark h2,
+.is-dark h3,
+.is-dark h4,
+.is-dark h5,
+.is-dark h6,
+.is-dark td {
+    color: white
 }
 
-
-.pl-1 {
-    padding-left: 1.15em;
-}
-
-.mr-2 {
-    margin-right: 2em;
+.is-dark table.striped>tbody>tr:nth-child(odd) {
+    background-color: rgba(242, 242, 242, 0.158);
 }
 
 .title {
     padding-bottom: 12px;
-    border-bottom: 1px solid rgb(207, 207, 207);
+    border-bottom: 1px solid #EAEAEA;
     margin: 22px 12px;
 }
+.capitalize { text-transform: capitalize; }
 
-table tr:last-child {
-    border: none;
-}
+.striped > div { border-bottom: 1px solid #EAEAEA }
+.striped > div:last-child { border-bottom: none; }
 
-.table-text-larger tr td {
-    font-size: 1.2rem;
-}
+.table-text-larger tr td { font-size: 1.2rem; }
 
-.bounceEffect {
-    animation: bounce 0.35s ease infinite alternate;
-}
-
+.bounceEffect { animation: bounce 0.35s ease infinite alternate; }
 @keyframes bounce{
     from {transform: translateY(0);}
     to   {transform: translateY(-10px);}
 }
 
-.w50 {
-    width: 50%;
+.scaleEffect { transition: transform 350ms ease }
+.scaleEffect:hover { transform: scale(1.05); }
+
+.pointer { cursor: pointer; }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-strong {
-    font-weight: 600!important;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    /* OVERRIDE MATERIALIZE */
+    opacity: 1;
+    left: auto;
+    top: auto;
+    transform-origin: initial;
 }
 
-.capitalize {
-    text-transform: capitalize;
-}
+.dropdown-content li > span { color: #333; }
+.dropdown-content li.active > span { color: #4285F4; }
+.dropdown-content li > span:hover { color: #4285F4; }
 
-.fixed-top-left {
-    position: fixed;
-    top: 32px;
-    left: 32px;
-    z-index: 9999;
+.is-dark .input-field input {
+    color: white;
 }

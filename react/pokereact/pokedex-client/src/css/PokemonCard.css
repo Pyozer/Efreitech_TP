@@ -1,21 +1,26 @@
-.card .card-content {
-    padding: 0 16px 16px 16px;
+.Pokemon-Card.card:hover {
+    box-shadow:
+        0 4px 5px 0 rgba(0,0,0,0.14),
+        0 1px 10px 0 rgba(0,0,0,0.12),
+        0 2px 4px -1px rgba(0,0,0,0.3); /* z-depth-2 */
 }
 
-.card .card-content h6, .card .card-content h5 {
+.Pokemon-Card.card .card-content {
+    padding: 6px 16px 16px;
+}
+
+.Pokemon-Card.card .card-content h6, .card .card-content h5 {
     margin: 0;
-    text-overflow: ellipsis;
-    overflow: hidden;
 }
 
-.card .card-content h5 {
+.Pokemon-Card.card .card-content h5 {
     font-size: 1.35rem;
 }
 
-.card .card-content h6 {
-    font-size: 1.3rem;
+.Pokemon-Card.card .card-content h6 {
+    font-size: 1.25rem;
 }
 
-.card .card-image {
+.Pokemon-Card.card .card-image {
     padding: 12px;
 }

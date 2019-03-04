@@ -2,114 +2,87 @@ import React from 'react';
 import PokemonInfosCard from './PokemonInfosCard'
 import TableRow from './TableRow';
 import TableStriped from './StripedTable';
-import Title from './Title';
-import PokemonHeader from './PokemonHeader';
+import Section from './Section';
+
+const TableStripedRow = ({ className, data }) => (
+    <div className={`col s12 ${className}`}>
+        <TableStriped>
+            {Object.entries(data).map(([key, value]) => (
+                <TableRow title={key} content={value} key={key} />
+            ))}
+        </TableStriped>
+    </div>
+)
 
 const PokemonInfo = ({ pokemon }) => {
-    const pokemonF = pokemon
+    const data = pokemon
     Object.entries(pokemon).forEach(([key, value]) => {
-        if (typeof value === 'string')
-            pokemonF[key] = value.replace(/\[/g, '').replace(/\]/g, '').replace(/'/g, '').replace(/\{\{!\}\}/g, '')
+        if (typeof value === 'string') {
+            data[key] = value.replace(/\[/g, '')
+                .replace(/\]/g, '')
+                .replace(/'/g, '')
+                .replace(/\{\{!\}\}/g, '')
+        }
     })
-    console.log(pokemonF);
 
-    return (
-        <div>
-            <PokemonHeader ndex={pokemonF.ndex} nom={pokemonF.nom} />
+    return <>
+        <Section title="Identité">
+            <TableStripedRow className='l6' data={{
+                'Couleur': data.couleur, 'Espece': data.espece, 'Type 1': data.type1, 'Type 2': data.type2,
+                'Taille': data.taille, 'Poids': data.poids, 'Forme': data.forme
+            }} />
 
-            <Title>Identité</Title>
-            <div className="row">
-                <div className="col s12 l6">
-                    <TableStriped>
-                        <TableRow title="Couleur :" content={pokemonF.couleur} />
-                        <TableRow title="Espece :" content={pokemonF.espece} />
-                        <TableRow title="Type 1 :" content={pokemonF.type1} />
-                        <TableRow title="Type 2 :" content={pokemonF.type2} />
-                        <TableRow title="Taille :" content={pokemonF.taille} />
-                        <TableRow title="Poids :" content={pokemonF.poids} />
-                        <TableRow title="Forme :" content={pokemonF.forme} />
-                    </TableStriped>
+            <TableStripedRow className='l6' data={{
+                'Pokemon': data.pokemon, 'Nom FR': data.nom, 'Nom EN': data.nomen, 'Nom DE': data.nomde, 'Nom TM': data.nomtm,
+                'Nom JA': data.nomja, 'Nom KO': data.nomko, 'Nom CH': data.nomch, 'Nom ROMANJI': data.nomromanji
+            }} />
+        </Section>
+
+        <Section title="Attaques">
+            {data.attaques.map((attaque, index) => (
+                <div className="col s12 m6 l4 xl3" key={index}>
+                    <PokemonInfosCard data={attaque} />
                 </div>
-                <div className="col s12 l6">
-                    <TableStriped>
-                        <TableRow title="Pokemon :" content={pokemonF.pokemon} />
-                        <TableRow title="Nom FR :" content={pokemonF.nom} />
-                        <TableRow title="Nom EN :" content={pokemonF.nomen} />
-                        <TableRow title="Nom DE :" content={pokemonF.nomde} />
-                        <TableRow title="Nom TM :" content={pokemonF.nomtm} />
-                        <TableRow title="Nom JA :" content={pokemonF.nomja} />
-                        <TableRow title="Nom KO :" content={pokemonF.nomko} />
-                        <TableRow title="Nom CH :" content={pokemonF.nomch} />
-                        <TableRow title="Nom ROMANJI :" content={pokemonF.nomromanji} />
-                    </TableStriped>
-                </div>
-                <div className="col s12 mt-2">
-                    <TableStriped>
-                        <TableRow title="Artwork Supp1 :" content={pokemonF['artwork_supp1-nom']} />
-                        <TableRow title="Artwork Supp2 :" content={pokemonF['artwork_supp2-nom']} />
-                        <TableRow title="Artwork Supp3 :" content={pokemonF['artwork_supp3-nom']} />
-                        <TableRow title="Artwork Supp4 :" content={pokemonF['artwork_supp4-nom']} />
-                        <TableRow title="Artwork Supp5 :" content={pokemonF['artwork_supp5-nom']} />
-                        <TableRow title="Artwork Supp6 :" content={pokemonF['artwork_supp6-nom']} />
-                    </TableStriped>
-                </div>
+            ))}
+        </Section>
+
+        <Section title="Autres informations">
+            <div className="col s12 m6 l5 xl4">
+                <PokemonInfosCard data={{
+                    'Effort': (data.effortval || "").split(';').join(' / '), 'Expérience': data.expval,
+                    'Expérience max': data.expmax, 'Capture ': data.captureval,
+                }} />
+                <PokemonInfosCard data={{
+                    'NDEX': data.ndex, 'NJDEX': data.njdex, 'HDEX': data.hdex, 'FDEX': data.fdex,
+                    'ADEX': data.adex, 'ODEX': data.odex, 'OPDEX': data.opdex,
+                }} />
             </div>
-            <Title>Attaques</Title>
-            <div className="row">
-                {pokemonF.attaques.map((attaque, index) => (
-                    <div className="col s12 m6 l4 xl3" key={index}>
-                        <PokemonInfosCard data={attaque} />
-                    </div>
-                ))}
+            <div className="col s12 m6 l7 xl8">
+                <PokemonInfosCard data={{
+                    'Capacité spéciale 1': data.capspe1, 'Capacité spéciale 2': data.capspe2, 'Capacité spéciale 3': data.capspe3,
+                    'Oeuf Pas': data.oeufpas, 'Groupe Oeuf 1': data.groupoeuf1, 'Groupe Oeuf 2': data.groupoeuf2,
+                }} />
+                <PokemonInfosCard data={{
+                    'Pinball RB GIF': data['pinballRB-gif'], 'Pinball RS GIF': data['pinballRS-gif'], 'Pinball RS': data.pinballRS,
+                    'PDM': data.pdm, 'Almia': data.almia, 'Diff RS RFVF': data['diff_rs-rfvf'], 'Diff DP PT': data['diff_dp-pt'],
+                    'Diff 4G FM': data['diff_4G-fm'],
+                }} />
             </div>
-            <Title>Autres informations</Title>
-            <div className="row">
-                <div className="col s12 m6 l5 xl4">
-                    <PokemonInfosCard data={{
-                        'ndex': pokemonF.ndex,
-                        'njdex': pokemonF.njdex,
-                        'hdex': pokemonF.hdex,
-                        'fdex': pokemonF.fdex,
-                        'adex': pokemonF.adex,
-                        'odex': pokemonF.odex,
-                        'opdex': pokemonF.opdex,
-                    }} />
-                </div>
-                <div className="col s12 m6 l7 xl8">
-                    <PokemonInfosCard data={{
-                        'Capacité spécial 1': pokemonF.capspe1,
-                        'Capacité spécial 2': pokemonF.capspe2,
-                        'Capacité spécial 3': pokemonF.capspe3,
-                        'Oeuf Pas': pokemonF.oeufpas,
-                        'Groupe Oeuf 1': pokemonF.groupoeuf1,
-                        'Groupe Oeuf 2': pokemonF.groupoeuf2,
-                    }} />
-                </div>
+            <div className="col s12">
+                <PokemonInfosCard data={{
+                    'Sensibilité Combat': data['sensib-combat'], 'Sensibilité Eau': data['sensib-eau'], 'Sensibilité Electrique': data['sensib-électrique'],
+                    'Sensibilité Feu': data['sensib-feu'], 'Sensibilité Glace': data['sensib-glace'], 'Sensibilité Psy': data['sensib-psy'],
+                    'RMQ Insecte': data['rmq-insecte'], 'RMQ Insecte Num': data['rmq-insecte-num'],
+                    'RMQ Glace': data['rmq-glace'], 'RMQ Glace Num': data['rmq-glace-num'], 'RMQ Spectre Num': data['rmq-spectre-num'],
+                    'RMQ Feu': data['rmq-feu'], 'RMQ Feu Num': data['rmq-feu-num'], 'RMQ Spectre': data['rmq-spectre'],
+                }} />
             </div>
-            <div className="row">
-                <div className="col s12 m6">
-                    <PokemonInfosCard data={{
-                        'Effort value': pokemonF.effortval,
-                        'Expérience value': pokemonF.expval,
-                        'Expérience max': pokemonF.expmax,
-                        'Capture value': pokemonF.captureval,
-                    }} />
-                </div>
-                <div className="col s12 m6">
-                    <PokemonInfosCard data={{
-                        'Pinball RB GIF': pokemonF['pinballRB-gif'],
-                        'Pinball RS GIF': pokemonF['pinballRS-gif'],
-                        'Pinball RS': pokemonF.pinballRS,
-                        'PDM': pokemonF.pdm,
-                        'Almia': pokemonF.almia,
-                        'Diff RS RFVF': pokemonF['diff_rs-rfvf'],
-                        'Diff DP PT': pokemonF['diff_dp-pt'],
-                        'Diff 4G FM': pokemonF['diff_4G-fm'],
-                    }} />
-                </div>
-            </div>
-        </div>
-    )
+            <TableStripedRow className='mt-2' data={{
+                'Artwork Supp1': data['artwork_supp1-nom'], 'Artwork Supp2': data['artwork_supp2-nom'], 'Artwork Supp3': data['artwork_supp3-nom'],
+                'Artwork Supp4': data['artwork_supp4-nom'], 'Artwork Supp5': data['artwork_supp5-nom'], 'Artwork Supp6': data['artwork_supp6-nom']
+            }} />
+        </Section>
+    </>
 }
 
 export default PokemonInfo;
