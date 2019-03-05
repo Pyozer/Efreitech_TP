@@ -1,3 +1,2 @@
-const hello = () => console.log("WESH")
+import App from './App'
 
-hello()
