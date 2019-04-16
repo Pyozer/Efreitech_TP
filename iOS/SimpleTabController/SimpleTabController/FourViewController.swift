@@ -6,4 +6,12 @@
 //  Copyright © 2019 Jean-Charles Moussé. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class FourViewController: UIViewController {
+    
+    @IBAction func goNextController(_ sender: Any) {
+        tabBarController?.selectedIndex = 0
+    }
+    
+}

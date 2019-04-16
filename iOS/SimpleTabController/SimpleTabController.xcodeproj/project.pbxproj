@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		510B01F1225CD655005E3996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B01F0225CD655005E3996 /* AppDelegate.swift */; };
-		510B01F3225CD655005E3996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B01F2225CD655005E3996 /* ViewController.swift */; };
+		510B01F3225CD655005E3996 /* OneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B01F2225CD655005E3996 /* OneViewController.swift */; };
 		510B01F6225CD655005E3996 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 510B01F4225CD655005E3996 /* Main.storyboard */; };
 		510B01F8225CD656005E3996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 510B01F7225CD656005E3996 /* Assets.xcassets */; };
 		510B01FB225CD656005E3996 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 510B01F9225CD656005E3996 /* LaunchScreen.storyboard */; };
+		510B0203225CD6D1005E3996 /* TwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B0202225CD6D1005E3996 /* TwoViewController.swift */; };
+		510B0205225CD6E3005E3996 /* ThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B0204225CD6E3005E3996 /* ThreeViewController.swift */; };
+		510B0207225CD6EF005E3996 /* FourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B0206225CD6EF005E3996 /* FourViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		510B01ED225CD655005E3996 /* SimpleTabController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleTabController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		510B01F0225CD655005E3996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		510B01F2225CD655005E3996 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		510B01F2225CD655005E3996 /* OneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneViewController.swift; sourceTree = "<group>"; };
 		510B01F5225CD655005E3996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		510B01F7225CD656005E3996 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		510B01FA225CD656005E3996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		510B01FC225CD656005E3996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		510B0202225CD6D1005E3996 /* TwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoViewController.swift; sourceTree = "<group>"; };
+		510B0204225CD6E3005E3996 /* ThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeViewController.swift; sourceTree = "<group>"; };
+		510B0206225CD6EF005E3996 /* FourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				510B01F0225CD655005E3996 /* AppDelegate.swift */,
-				510B01F2225CD655005E3996 /* ViewController.swift */,
+				510B01F2225CD655005E3996 /* OneViewController.swift */,
 				510B01F4225CD655005E3996 /* Main.storyboard */,
 				510B01F7225CD656005E3996 /* Assets.xcassets */,
 				510B01F9225CD656005E3996 /* LaunchScreen.storyboard */,
 				510B01FC225CD656005E3996 /* Info.plist */,
+				510B0202225CD6D1005E3996 /* TwoViewController.swift */,
+				510B0204225CD6E3005E3996 /* ThreeViewController.swift */,
+				510B0206225CD6EF005E3996 /* FourViewController.swift */,
 			);
 			path = SimpleTabController;
 			sourceTree = "<group>";
@@ -135,8 +144,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				510B01F3225CD655005E3996 /* ViewController.swift in Sources */,
+				510B01F3225CD655005E3996 /* OneViewController.swift in Sources */,
 				510B01F1225CD655005E3996 /* AppDelegate.swift in Sources */,
+				510B0207225CD6EF005E3996 /* FourViewController.swift in Sources */,
+				510B0203225CD6D1005E3996 /* TwoViewController.swift in Sources */,
+				510B0205225CD6E3005E3996 /* ThreeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

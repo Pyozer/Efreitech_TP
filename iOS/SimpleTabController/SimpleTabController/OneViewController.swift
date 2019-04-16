@@ -8,13 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class OneViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBAction func goNextController(_ sender: Any) {
+        tabBarController?.selectedIndex = 1
     }
-
-
+    
 }
-
