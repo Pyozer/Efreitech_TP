@@ -13,6 +13,7 @@ struct PokemonDetail: Codable {
     let id: Int
     let name: String
     let shape: Info
+    let varieties: [PokemonVarieties]
     
     enum CodingKeys: String, CodingKey {
         case color
@@ -21,6 +22,7 @@ struct PokemonDetail: Codable {
         case id
         case name
         case shape
+        case varieties
     }
 }
 
@@ -36,5 +38,15 @@ struct FlavorTextEntry: Codable {
     enum CodingKeys: String, CodingKey {
         case flavorText = "flavor_text"
         case language, version
+    }
+}
+
+struct PokemonVarieties: Codable {
+    let isDefault: Bool
+    let pokemon: Info
+    
+    enum CodingKeys: String, CodingKey {
+        case isDefault = "is_default"
+        case pokemon
     }
 }

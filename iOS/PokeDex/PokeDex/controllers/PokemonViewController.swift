@@ -43,7 +43,7 @@ class PokemonViewController: BaseViewController {
     
     private func updateView() {
         if let _species = pokemonSpecies {
-            pokemonName.text = _species.name.capitalize()
+            pokemonName.text = "#\(_species.id) \(_species.name.capitalize())"
             pokemonHabitat.text = _species.habitat.name.capitalize()
             pokemonColor.text = _species.color.name.capitalize()
             pokemonShape.text = _species.shape.name.capitalize()
@@ -51,8 +51,14 @@ class PokemonViewController: BaseViewController {
             pokemonImage.sd_setImage(with: URL(
                 string: "https://pokeres.bastionbot.org/images/pokemon/\(pokemon!.entryNumber).png"
             ))
+            
             self.setVisibility(true, false)
         }
+    }
+    
+    //Action
+    @objc func tapDetected() {
+        print("Imageview Clicked")
     }
     
     @IBAction func onBackPressed(_ sender: UIButton) {
@@ -62,6 +68,11 @@ class PokemonViewController: BaseViewController {
     private func setVisibility(_ isContent: Bool, _ isProgress: Bool) {
         self.contentView.isHidden = !isContent
         self.progressView.isHidden = !isProgress
+    }
+    
+    private func getIDFromUrl(_ url: String) -> String {
+        let values = url.split(separator: "/")
+        return String(values[values.count - 1])
     }
     
 }
