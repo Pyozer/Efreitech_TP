@@ -10,9 +10,11 @@ import UIKit
 
 class HouseViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource{
     
+    @IBOutlet weak var emptyLabel: UILabel!
     @IBOutlet weak var charactersTableView: UITableView!
     var characters: [HouseCharacter] = []
     var house: House?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,9 @@ class HouseViewController: BaseViewController, UITableViewDelegate, UITableViewD
             RequestManager.getHouseCharacters(houseName: _house.name, onSuccess: { characters in
                 self.characters = characters
                 self.charactersTableView.reloadData()
+                let isEmpty = self.characters.count == 0
+                self.emptyLabel.isHidden = !isEmpty
+                self.charactersTableView.isHidden = isEmpty
             }, onFail: { error in
                 self.showAlert(error?.localizedDescription ?? "Cannot get GOT house characters data :/")
             })

@@ -86,22 +86,54 @@
 		511C128722927DAA002BB33E /* GameOfSwift */ = {
 			isa = PBXGroup;
 			children = (
+				5132154F2292E4190079666E /* controllers */,
+				5132154E2292E4060079666E /* api */,
+				5132154D2292E3F50079666E /* models */,
+				5132154C2292E3EB0079666E /* cell */,
 				511C128822927DAA002BB33E /* AppDelegate.swift */,
-				511C128A22927DAA002BB33E /* ViewController.swift */,
-				511C129A22927DF7002BB33E /* HouseViewController.swift */,
-				511C129C22927DF9002BB33E /* CharacterViewController.swift */,
 				511C128C22927DAA002BB33E /* Main.storyboard */,
 				511C128F22927DAC002BB33E /* Assets.xcassets */,
 				511C129122927DAC002BB33E /* LaunchScreen.storyboard */,
 				511C129422927DAC002BB33E /* Info.plist */,
-				511C129E2292839C002BB33E /* House.swift */,
-				511C12A022928414002BB33E /* HouseCell.swift */,
-				511C12AC2292960D002BB33E /* CharacterCell.swift */,
-				511C12A822928C0C002BB33E /* RequestManager.swift */,
-				511C12AA22928DC7002BB33E /* BaseViewController.swift */,
-				511C12AE229296F1002BB33E /* HouseCharacter.swift */,
 			);
 			path = GameOfSwift;
+			sourceTree = "<group>";
+		};
+		5132154C2292E3EB0079666E /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				511C12A022928414002BB33E /* HouseCell.swift */,
+				511C12AC2292960D002BB33E /* CharacterCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		5132154D2292E3F50079666E /* models */ = {
+			isa = PBXGroup;
+			children = (
+				511C129E2292839C002BB33E /* House.swift */,
+				511C12AE229296F1002BB33E /* HouseCharacter.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		5132154E2292E4060079666E /* api */ = {
+			isa = PBXGroup;
+			children = (
+				511C12A822928C0C002BB33E /* RequestManager.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		5132154F2292E4190079666E /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				511C128A22927DAA002BB33E /* ViewController.swift */,
+				511C129A22927DF7002BB33E /* HouseViewController.swift */,
+				511C129C22927DF9002BB33E /* CharacterViewController.swift */,
+				511C12AA22928DC7002BB33E /* BaseViewController.swift */,
+			);
+			path = controllers;
 			sourceTree = "<group>";
 		};
 		78DEB4E308CBBE4B70D6AC69 /* Frameworks */ = {
