@@ -15,7 +15,6 @@ class HouseViewController: BaseViewController, UITableViewDelegate, UITableViewD
     var characters: [HouseCharacter] = []
     var house: House?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         charactersTableView.dataSource = self

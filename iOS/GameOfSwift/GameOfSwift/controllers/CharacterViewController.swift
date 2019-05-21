@@ -8,52 +8,69 @@
 
 import UIKit
 
-class CharacterViewController: BaseViewController, UITableViewDataSource {
+class CharacterViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var characterTableView: UITableView!
-    @IBOutlet weak var characterImage: UIImageView!
-    @IBOutlet weak var characterName: UILabel!
-    @IBOutlet weak var characterActor: UILabel!
     
     var character: HouseCharacter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         characterTableView.dataSource = self
+        characterTableView.delegate = self
         self.title = character?.name
-        characterImage.sd_setImage(with: URL(string: character?.image ?? kDefaultImage))
-        characterName.text = character?.name
-        characterActor.text = character?.actor
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .white
+            headerView.textLabel?.font = UIFont.systemFont(
+                ofSize: 20.0,
+                weight: UIFont.Weight(rawValue: 400)
+            )
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
+        if section == 1 {
             return "Titles"
         }
-        return "Sibling"
+        if section == 2 {
+            return "Sibling"
+        }
+        return nil
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        let isTitles = character?.titles.isEmpty ?? true ? 0 : 1
-        let isSiblings = character?.siblings.isEmpty ?? true ? 0 : 1
-        return isTitles + isSiblings
+        let titles = character?.titles.isEmpty ?? true ? 0 : 1
+        let siblings = character?.siblings.isEmpty ?? true ? 0 : 1
+        return 1 + titles + siblings
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return character?.titles.count ?? 0
+            return 1
         }
         if section == 1 {
+            return character?.titles.count ?? 0
+        }
+        if section == 2 {
             return character?.siblings.count ?? 0
         }
         return 0;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "characterInfoCell", for: indexPath)
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterHeaderCell", for: indexPath) as! CharacterHeaderCell
+            cell.setData(character)
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterInfoCell", for: indexPath)
+        if indexPath.section == 1 {
             cell.textLabel?.text = character?.titles[indexPath.row]
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == 2 {
             cell.textLabel?.text = character?.siblings[indexPath.row]
         }
         return cell

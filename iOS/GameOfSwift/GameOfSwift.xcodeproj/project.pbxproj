@@ -20,6 +20,7 @@
 		511C12AB22928DC7002BB33E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511C12AA22928DC7002BB33E /* BaseViewController.swift */; };
 		511C12AD2292960D002BB33E /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511C12AC2292960D002BB33E /* CharacterCell.swift */; };
 		511C12AF229296F1002BB33E /* HouseCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511C12AE229296F1002BB33E /* HouseCharacter.swift */; };
+		51538F7B2294006800A3DC25 /* CharacterHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51538F7A2294006800A3DC25 /* CharacterHeaderCell.swift */; };
 		8FCB7F3BA7C7EFF580EB6EBE /* Pods_GameOfSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 310E3DE647DA843EE8FF162C /* Pods_GameOfSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		511C12AA22928DC7002BB33E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		511C12AC2292960D002BB33E /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		511C12AE229296F1002BB33E /* HouseCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseCharacter.swift; sourceTree = "<group>"; };
+		51538F7A2294006800A3DC25 /* CharacterHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterHeaderCell.swift; sourceTree = "<group>"; };
 		90D9DFC14166AD197AF715C0 /* Pods-GameOfSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfSwift.release.xcconfig"; path = "Target Support Files/Pods-GameOfSwift/Pods-GameOfSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +106,7 @@
 			children = (
 				511C12A022928414002BB33E /* HouseCell.swift */,
 				511C12AC2292960D002BB33E /* CharacterCell.swift */,
+				51538F7A2294006800A3DC25 /* CharacterHeaderCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				511C12AF229296F1002BB33E /* HouseCharacter.swift in Sources */,
 				511C129D22927DF9002BB33E /* CharacterViewController.swift in Sources */,
 				511C129F2292839C002BB33E /* House.swift in Sources */,
+				51538F7B2294006800A3DC25 /* CharacterHeaderCell.swift in Sources */,
 				511C12A122928414002BB33E /* HouseCell.swift in Sources */,
 				511C12AB22928DC7002BB33E /* BaseViewController.swift in Sources */,
 				511C12A922928C0C002BB33E /* RequestManager.swift in Sources */,

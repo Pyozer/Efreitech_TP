@@ -16,6 +16,7 @@ class ViewController: BaseViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Game Of Throne"
         houseTableView.dataSource = self
         houseTableView.delegate = self
         _fetchData()
