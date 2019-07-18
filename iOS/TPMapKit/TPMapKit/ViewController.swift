@@ -22,6 +22,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var mapTypeChoice: UISegmentedControl!
     
     let locationManager = CLLocationManager()
     
@@ -61,6 +62,12 @@ class ViewController: UIViewController {
         )
     ]
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let buttonItem = MKUserTrackingBarButtonItem(mapView: mapView)
+        self.navigationItem.rightBarButtonItem = buttonItem
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         initMarkers()
@@ -74,6 +81,21 @@ class ViewController: UIViewController {
             changeRegion(continents[order[segmentControl.selectedSegmentIndex]!]!)
         }
     }
+    
+    @IBAction func onMyLocationPressed(_ sender: UIButton) {
+        let viewRegion = MKCoordinateRegion(
+            center: mapView.userLocation.coordinate,
+            latitudinalMeters: 1000,
+            longitudinalMeters: 1000
+        )
+        mapView.setRegion(viewRegion, animated: true)
+    }
+    
+    @IBAction func onMapTypePressed(_ sender: Any) {
+        let choices: [Int : MKMapType] = [0: .standard, 1: .satellite, 2: .hybrid]
+        mapView.mapType = choices[mapTypeChoice.selectedSegmentIndex]!
+    }
+    
     
     func checkLocationAuthorizationStatus() {
         if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {

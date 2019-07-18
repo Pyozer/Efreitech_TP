@@ -36,26 +36,56 @@
                                     <action selector="onContientPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="byB-4a-hGB"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8x1-DH-bt7">
+                                <rect key="frame" x="16" y="60" width="101" height="34"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <state key="normal" title="My Location"/>
+                                <connections>
+                                    <action selector="onMyLocationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qhV-h6-dxF"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UH0-FA-tR0">
+                                <rect key="frame" x="178" y="60" width="220" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="Pfg-if-68i"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="hybrid"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onContientPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="5vl-uH-cIa"/>
+                                    <action selector="onMapTypePressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="W5R-iV-oSd"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="GcV-Tr-VPh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="CkR-oh-jEv"/>
                             <constraint firstAttribute="trailing" secondItem="GcV-Tr-VPh" secondAttribute="trailing" id="Eqb-J6-lb3"/>
+                            <constraint firstItem="UH0-FA-tR0" firstAttribute="top" secondItem="c7m-Ae-cmC" secondAttribute="top" constant="16" id="LeF-bf-KjD"/>
                             <constraint firstItem="GcV-Tr-VPh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YJw-g3-T2C"/>
                             <constraint firstItem="Rdi-lo-gIq" firstAttribute="trailing" secondItem="c7m-Ae-cmC" secondAttribute="trailing" constant="-16" id="elN-Aj-5bo"/>
                             <constraint firstAttribute="bottom" secondItem="GcV-Tr-VPh" secondAttribute="bottom" id="gRi-60-0Qf"/>
                             <constraint firstItem="Rdi-lo-gIq" firstAttribute="bottom" secondItem="GcV-Tr-VPh" secondAttribute="bottom" constant="-42" id="nuB-4p-Rof"/>
+                            <constraint firstItem="c7m-Ae-cmC" firstAttribute="trailing" secondItem="UH0-FA-tR0" secondAttribute="trailing" constant="16" id="s8o-Ja-Zb6"/>
+                            <constraint firstItem="8x1-DH-bt7" firstAttribute="leading" secondItem="c7m-Ae-cmC" secondAttribute="leading" constant="16" id="uUb-7o-xoA"/>
                             <constraint firstItem="c7m-Ae-cmC" firstAttribute="leading" secondItem="Rdi-lo-gIq" secondAttribute="leading" constant="-16" id="v7Y-e9-JCx"/>
+                            <constraint firstItem="8x1-DH-bt7" firstAttribute="top" secondItem="c7m-Ae-cmC" secondAttribute="top" constant="16" id="yFX-0C-9kB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c7m-Ae-cmC"/>
                     </view>
                     <connections>
+                        <outlet property="mapTypeChoice" destination="UH0-FA-tR0" id="vg9-Ee-d7C"/>
                         <outlet property="mapView" destination="GcV-Tr-VPh" id="W5r-0K-9eD"/>
                         <outlet property="segmentControl" destination="Rdi-lo-gIq" id="fki-ut-ONA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-39.130434782608695" y="96.428571428571431"/>
         </scene>
     </scenes>
 </document>
