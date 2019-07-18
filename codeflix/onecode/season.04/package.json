@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Season 04",
   "dependencies": {
-    "sqlite3": "^4.0.3"
+    "sqlite3": "^4.0.9"
   },
   "devDependencies": {},
   "scripts": {},
