@@ -1,0 +1,118 @@
+import { roman } from './roman';
+
+describe('roman', () => {
+  [
+    { input: -5, output: '' },
+    { input: 0, output: '' },
+    { input: 1, output: 'I' },
+    { input: 2, output: 'II' },
+    { input: 3, output: 'III' },
+    { input: 4, output: 'IV' },
+    { input: 5, output: 'V' },
+    { input: 6, output: 'VI' },
+    { input: 7, output: 'VII' },
+    { input: 8, output: 'VIII' },
+    { input: 9, output: 'IX' },
+    { input: 10, output: 'X' },
+    { input: 11, output: 'XI' },
+    { input: 12, output: 'XII' },
+    { input: 13, output: 'XIII' },
+    { input: 14, output: 'XIV' },
+    { input: 15, output: 'XV' },
+    { input: 16, output: 'XVI' },
+    { input: 17, output: 'XVII' },
+    { input: 18, output: 'XVIII' },
+    { input: 19, output: 'XIX' },
+    { input: 20, output: 'XX' },
+    { input: 21, output: 'XXI' },
+    { input: 22, output: 'XXII' },
+    { input: 23, output: 'XXIII' },
+    { input: 24, output: 'XXIV' },
+    { input: 25, output: 'XXV' },
+    { input: 26, output: 'XXVI' },
+    { input: 27, output: 'XXVII' },
+    { input: 28, output: 'XXVIII' },
+    { input: 29, output: 'XXIX' },
+    { input: 30, output: 'XXX' },
+    { input: 31, output: 'XXXI' },
+    { input: 32, output: 'XXXII' },
+    { input: 33, output: 'XXXIII' },
+    { input: 34, output: 'XXXIV' },
+    { input: 35, output: 'XXXV' },
+    { input: 36, output: 'XXXVI' },
+    { input: 37, output: 'XXXVII' },
+    { input: 38, output: 'XXXVIII' },
+    { input: 39, output: 'XXXIX' },
+    { input: 40, output: 'XL' },
+    { input: 41, output: 'XLI' },
+    { input: 44, output: 'XLIV' },
+    { input: 45, output: 'XLV' },
+    { input: 46, output: 'XLVI' },
+    { input: 49, output: 'XLIX' },
+    { input: 50, output: 'L' },
+    { input: 51, output: 'LI' },
+    { input: 52, output: 'LII' },
+    { input: 53, output: 'LIII' },
+    { input: 54, output: 'LIV' },
+    { input: 55, output: 'LV' },
+    { input: 59, output: 'LIX' },
+    { input: 65, output: 'LXV' },
+    { input: 69, output: 'LXIX' },
+    { input: 70, output: 'LXX' },
+    { input: 80, output: 'LXXX' },
+    { input: 90, output: 'XC' },
+    { input: 92, output: 'XCII' },
+    { input: 94, output: 'XCIV' },
+    { input: 95, output: 'XCV' },
+    { input: 99, output: 'XCIX' },
+    { input: 100, output: 'C' },
+    { input: 101, output: 'CI' },
+    { input: 105, output: 'CV' },
+    { input: 109, output: 'CIX' },
+    { input: 125, output: 'CXXV' },
+    { input: 140, output: 'CXL' },
+    { input: 150, output: 'CL' },
+    { input: 173, output: 'CLXXIII' },
+    { input: 180, output: 'CLXXX' },
+    { input: 189, output: 'CLXXXIX' },
+    { input: 190, output: 'CXC' },
+    { input: 195, output: 'CXCV' },
+    { input: 199, output: 'CXCIX' },
+    { input: 200, output: 'CC' },
+    { input: 399, output: 'CCCXCIX' },
+    { input: 400, output: 'CD' },
+    { input: 440, output: 'CDXL' },
+    { input: 450, output: 'CDL' },
+    { input: 499, output: 'CDXCIX' },
+    { input: 500, output: 'D' },
+    { input: 550, output: 'DL' },
+    { input: 645, output: 'DCXLV' },
+    { input: 794, output: 'DCCXCIV' },
+    { input: 899, output: 'DCCCXCIX' },
+    { input: 900, output: 'CM' },
+    { input: 950, output: 'CML' },
+    { input: 999, output: 'CMXCIX' },
+    { input: 1000, output: 'M' },
+    { input: 2000, output: 'MM' },
+    { input: 3000, output: 'MMM' },
+    { input: 3789, output: 'MMMDCCLXXXIX' },
+    { input: 3999, output: 'MMMCMXCIX' },
+    { input: 4000, output: 'MMMM' },
+  ].forEach(({ input, output }) => {
+    test(`it returns "${output}" for "${input}"`, () => {
+      expect(roman(input)).toBe(output);
+    });
+  });
+
+  ['', null, undefined].forEach((v) => {
+    test(`it should throw an exception for "${v}"`, () => {
+      expect(() => roman(v)).toThrowError('Value cannot be null/undefined');
+    });
+  });
+
+  [4001, 999999].forEach((v) => {
+    test(`it should throw an exception for "${v}"`, () => {
+      expect(() => roman(v)).toThrowError('Overflow');
+    });
+  });
+});
